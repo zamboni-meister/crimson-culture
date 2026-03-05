@@ -1,65 +1,172 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+const featuredWorks = [
+  {
+    id: 1,
+    title: "Fractured Light",
+    category: "Photography",
+    href: "/art/images",
+    description: "A series exploring the interplay of shadow and light in urban environments.",
+    accent: "from-[#c0392b]/20 to-transparent",
+    iconColor: "border-red-800",
+  },
+  {
+    id: 2,
+    title: "Drift",
+    category: "Video",
+    href: "/art/videos",
+    description: "An experimental short film shot on expired 16mm film.",
+    accent: "from-purple-900/20 to-transparent",
+    iconColor: "border-purple-800",
+  },
+  {
+    id: 3,
+    title: "Hollow Signal",
+    category: "Audio",
+    href: "/art/audio",
+    description: "A 7-track ambient EP crafted from field recordings and synthesizers.",
+    accent: "from-blue-900/20 to-transparent",
+    iconColor: "border-blue-800",
+  },
+  {
+    id: 4,
+    title: "Rust & Red",
+    category: "Photography",
+    href: "/art/images",
+    description: "Industrial decay reframed as quiet beauty.",
+    accent: "from-orange-900/20 to-transparent",
+    iconColor: "border-orange-800",
+  },
+];
+
+function FeaturedCard({ work }: { work: (typeof featuredWorks)[number] }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <Link
+      href={work.href}
+      className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-all duration-300 hover:border-[#c0392b]/50 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(192,57,43,0.15)]"
+    >
+      <div className="relative flex h-48 items-center justify-center">
+        <div className={`absolute inset-0 bg-gradient-to-br ${work.accent}`} />
+        <div className="relative z-10 flex flex-col items-center gap-3 opacity-25 group-hover:opacity-40 transition-opacity">
+          <div className={`h-14 w-14 rounded-full border-2 ${work.iconColor}`} />
+          <div className="w-8 h-0.5 bg-zinc-600" />
+          <div className="w-12 h-0.5 bg-zinc-600" />
+        </div>
+        <span className="absolute top-4 left-4 rounded-full border border-zinc-700 bg-black/60 px-3 py-1 text-xs font-medium uppercase tracking-wider text-zinc-400">
+          {work.category}
+        </span>
+      </div>
+      <div className="p-5">
+        <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-[#c0392b]">
+          {work.title}
+        </h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-zinc-500">
+          {work.description}
+        </p>
+        <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-[#c0392b] opacity-0 transition-opacity group-hover:opacity-100">
+          View work
+          <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(192,57,43,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(192,57,43,0.04) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c0392b]/5 blur-[80px]" />
+
+        <div className="relative z-10 max-w-4xl animate-fade-in">
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#c0392b]">
+            Creative Showcase
           </p>
+          <h1 className="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
+            Art that lives
+            <br />
+            <span className="text-[#c0392b]">outside the frame.</span>
+          </h1>
+          <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg">
+            Photography, film, and sound — a body of work built at the intersection of
+            instinct and craft. Welcome to the archive.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/art"
+              className="glow rounded-lg bg-[#c0392b] px-7 py-3.5 text-sm font-semibold text-white transition-all hover:bg-[#e74c3c] hover:shadow-[0_0_30px_rgba(192,57,43,0.4)]"
+            >
+              Explore the Work
+            </Link>
+            <Link
+              href="/about"
+              className="rounded-lg border border-zinc-700 px-7 py-3.5 text-sm font-semibold text-zinc-300 transition-all hover:border-zinc-500 hover:text-white"
+            >
+              About Me
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+          <span className="text-xs uppercase tracking-widest text-zinc-500">Scroll</span>
+          <div className="h-8 w-0.5 bg-gradient-to-b from-zinc-500 to-transparent" />
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Featured Work */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
+        <div className="mb-12 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#c0392b]">
+              Selected Works
+            </p>
+            <h2 className="text-3xl font-bold text-white md:text-4xl">Featured Projects</h2>
+          </div>
+          <Link
+            href="/art"
+            className="inline-flex items-center gap-2 text-sm text-zinc-400 transition-colors hover:text-white"
+          >
+            View all work
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {featuredWorks.map((work) => (
+            <FeaturedCard key={work.id} work={work} />
+          ))}
+        </div>
+      </section>
+
+      {/* Tagline strip */}
+      <section className="border-y border-zinc-800 bg-zinc-950">
+        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
+          <blockquote className="text-2xl font-light italic text-zinc-400 md:text-3xl">
+            &ldquo;Every frame is a decision. Every sound is an intention.&rdquo;
+          </blockquote>
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-block rounded-lg border border-zinc-700 px-6 py-3 text-sm text-zinc-400 transition-all hover:border-[#c0392b] hover:text-white"
+            >
+              Get in touch
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
