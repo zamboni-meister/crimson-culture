@@ -1,4 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
+import localFont from "next/font/local";
+
+const modernThrash = localFont({
+  src: "../../public/fonts/Modern Thrash Demo.otf",
+  variable: "--font-modern-thrash",
+});
 
 const featuredWorks = [
   {
@@ -75,28 +82,38 @@ function FeaturedCard({ work }: { work: (typeof featuredWorks)[number] }) {
 }
 
 export default function HomePage() {
+  const { className: thrashClass } = modernThrash;
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden px-6 text-center">
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(192,57,43,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(192,57,43,0.04) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#c0392b]/5 blur-[80px]" />
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
+        {/* Logo background */}
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src="/images/shadowy-vault.webp"
+            alt=""
+            fill
+            className="object-cover opacity-90"
+            priority
+          />
+          {/* Subtle overlay */}
+          <div className="absolute inset-0 bg-[#080808]/20" />
+        </div>
 
-        <div className="relative z-10 max-w-4xl animate-fade-in">
+<div className="relative z-10 animate-fade-in">
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#c0392b]">
             Creative Showcase
           </p>
-          <h1 className="text-5xl font-bold leading-tight tracking-tight text-white md:text-7xl lg:text-8xl">
-            Art that lives
-            <br />
-            <span className="text-[#c0392b]">outside the frame.</span>
+          <h1
+            className={`${thrashClass} text-center text-[3.58rem] text-black font-bold md:text-[5.02rem] lg:text-[6.45rem]`}
+            style={{
+              textShadow: "0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.4)",
+              letterSpacing: "0.1em",
+              lineHeight: 1.589,
+              fontWeight: 900,
+            }}
+          >
+            BRINGING DARK<br />CU<span style={{ letterSpacing: "0.36em" }}>L</span>TURE TO <span style={{ letterSpacing: "0.36em" }}>L</span>IGHT
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-zinc-400 md:text-lg">
             Photography, film, and sound — a body of work built at the intersection of

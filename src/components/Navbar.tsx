@@ -16,10 +16,10 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 bg-black/80 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/60 to-transparent border-b-0">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-[1.2rem] pb-4">
         <Link href="/" className="group flex items-center gap-2">
-          <span className="text-xl font-bold tracking-tight text-white">
+          <span className="text-[1.5rem] font-bold tracking-tight text-white">
             Crimson
             <span className="text-[#c0392b]">.</span>
           </span>
@@ -36,7 +36,7 @@ export default function Navbar() {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`text-sm font-medium tracking-wide transition-colors duration-200 ${
+                  className={`text-[1.05rem] font-medium tracking-wide transition-colors duration-200 ${
                     isActive
                       ? "text-[#c0392b]"
                       : "text-zinc-400 hover:text-white"
@@ -81,7 +81,7 @@ export default function Navbar() {
                   <Link
                     href={href}
                     onClick={() => setMenuOpen(false)}
-                    className={`block text-sm font-medium tracking-wide transition-colors ${
+                    className={`block text-[1.05rem] font-medium tracking-wide transition-colors ${
                       isActive ? "text-[#c0392b]" : "text-zinc-400 hover:text-white"
                     }`}
                   >
